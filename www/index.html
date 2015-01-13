@@ -36,7 +36,7 @@
 
     <script id="templates/tabs.html" type="text/ng-template">
         <ion-view>
-            <ion-tabs class="tabs-striped tabs-icon-top tabs-top tabs-background-calm tabs-color-light">
+            <ion-tabs class="tabs-striped tabs-icon-top tabs-background-calm tabs-color-light">
                 <ion-tab title="Home" icon="ion-ios7-home-outline" ui-sref="tabs.home">
                     <ion-nav-view name="home-tab"></ion-nav-view>
                 </ion-tab>
@@ -127,7 +127,7 @@
             <ion-nav-buttons side="right">
                 <button class="button button-icon ion-ios7-information-outline" ng-click="modalInfo.show()"></button>
             </ion-nav-buttons>
-            <ion-content class="positive-bg has-tabs-top">
+            <ion-content class="positive-bg">
 
                 <div class="button-bar button-full">
                     <a ng-hide="lastAlertList===null" class="button button-assertive">Dernières recherches</a>
@@ -170,7 +170,7 @@
     <script id="newalert.html" type="text/ng-template">
         <ion-view>
             <ion-nav-title>{{title}}</ion-nav-title>
-            <ion-content class="positive-bg has-tabs-top">
+            <ion-content class="positive-bg">
                 <div class="list">
                     <div ng-click="goSelectExit(true)" class="item item-balanced item-button-right">
                         Entrée
@@ -228,7 +228,7 @@
 
     <script id="pageListExit.html" type="text/ng-template">
         <ion-view view-title="{{title}}">
-            <ion-content class="padding positive-bg has-tabs-top">
+            <ion-content class="padding positive-bg">
                 <p class="dark fs16">Sélectionnez votre <span class="strong">{{txtparam}}</span> de rocade par numéro ou par ville desservie.</p>
                 <div class="button-bar">
                     <a ng-class="[button, actif1, icon1]" ng-click="setMode(1)">Par numéro</a>
@@ -263,7 +263,7 @@
 
     <script id="map.html" type="text/ng-template">
         <ion-view view-title="Carte">
-            <ion-content class="has-tabs-top pt10">
+            <ion-content class="pt10">
                 <div class="calque">
                     <div class="calquea">
                         <img class="imgrocade" src="img/sp1_bordeaux_v01b.gif">
@@ -281,7 +281,7 @@
 
     <script id="pageTraficLive.html" type="text/ng-template">
         <ion-view view-title="Fluidité du trafic">
-            <ion-content class="padding txtcenter center calm-bg light has-tabs-top">
+            <ion-content class="padding txtcenter center calm-bg light">
                 <ion-refresher refreshing-icon="ion-ios7-reloading light" pulling-icon="ion-ios7-arrow-thin-down light" on-refresh="doRefresh()"></ion-refresher>
                 <p class="light fs24">{{currentAlert.rocade.enter}}<i class="icon padding icon ion-arrow-right-c"></i>{{currentAlert.rocade.exit}}</p>
                 <div class="row">

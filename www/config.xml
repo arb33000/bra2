@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<widget id="org.dossou.arb" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.dossou.arb" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>AlerteRocade</name>
     <description>
         Alerte Rocade Bordeaux vous permet de connaitre en temps réel le trafic sur la rocade de bordeaux mais permet aussi la création d'alertes personnalisées.
@@ -28,7 +28,7 @@
     <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
     <gap:plugin name="com.adobe.plugins.gaplugin" version="2.3.1" />
     <gap:plugin name="org.apache.cordova.globalization" version="0.3.1" />
-    <gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" version="1.1.2" />
+    <gap:plugin name="com.sharinglabs.cordova.plugin.datepicker" version="1.1.3" />
 
     <icon src="icon.png" />
     <icon src="res/icon/android/drawable-ldpi/Icon.png" gap:platform="android" gap:qualifier="ldpi" />
