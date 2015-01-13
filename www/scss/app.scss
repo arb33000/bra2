@@ -1,0 +1,26 @@
+// your variable changes can go here
+
+//Bleu rose
+$light:                 #fff;
+$stable:                #f8f8f8; //gris
+$positive:              #C5CAE9; //bleu gris
+$calm: #303F9F; // bleu foncé
+$assertive:#FF4081; // rose
+$balanced:#3F51B5; //bleu 
+$energized:#f0b840;
+
+//Gris orange
+$light: #fff;
+$stable: #f8f8f8;
+$positive: #b0bec5;
+$calm: #455a64;
+$assertive:#ffab40;
+$balanced:#607d8b;
+$energized:#ffd180;
+
+
+@import "ionic/ionic";
+
+// your slick styles can go here...
+// when Sass processes, both Ionic's Sass and your Sass will combine
+// into one file and saved in your app's directory as css/app.css

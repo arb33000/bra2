@@ -1,0 +1,24 @@
+cordova plugin add org.apache.cordova.globalization
+cordova plugin add org.apache.cordova.device
+cordova platform add android
+cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+cordova plugin add org.apache.cordova.statusbar
+cordova plugin add https://github.com/phonegap-build/GAPlugin.git
+
+cordova plugin remove org.apache.cordova.globalization
+cordova plugin remove org.apache.cordova.device
+cordova platform remove android
+cordova plugin remove com.phonegap.plugins.PushPlugin
+cordova platform remove wp8
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            try {
+                if (this.NavigationContext.QueryString["info"] != null) {
+                    String info = this.NavigationContext.QueryString["info"];
+                    this.CordovaView.StartPageUri = new Uri(String.Format("//www/index.html#",info), UriKind.Relative);
+                }
+            } catch (KeyNotFoundException) {
+            }
+        }

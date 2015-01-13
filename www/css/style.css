@@ -1,0 +1,164 @@
+/* Empty. Add your own CSS if you like */
+
+body {  overflow: hidden;  -ms-content-zooming: none; }
+
+.button.button-assertive {
+    color: #444444;
+}
+.button.button-energized {
+    color: #444444;
+}
+.exitButton {
+border-radius: 0px;
+margin: 0 8px 8px 0; 
+}
+
+.txtcenter {
+	text-align: center;
+}
+
+.ita {font-style:italic};
+
+.w42 {width: 42px;}
+
+.fs16 {font-size:16px !important;}
+.fs24 {font-size:24px;}
+.fs30 {font-size:30px;}
+.fs36 {font-size:36px;}
+.fs50 {font-size:50px;}
+.strong {font-weight: bold; }
+
+
+
+.calquea {
+    border: 0 none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
+.imgrocade {
+  width:100%;
+  max-width:582px;
+}
+
+.calqueb {
+  width:100%;
+    border: 0 none;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.calque {
+  text-align:center;
+  position: relative;
+}
+
+
+.floatR {
+  float:right;
+}
+
+.floatL {
+  float:left;
+}
+
+.pt80 {
+  padding-top: 80px;
+}
+
+.pt10 {
+	padding-top: 10px;
+}
+
+.pl20 {
+  padding-left: 20px;
+}
+
+.pl15 {
+  padding-left: 15px;
+}
+
+.pr5 {
+  padding-right: 5px;
+}
+
+.pl0 {
+  padding-left: 0px;
+}
+
+.p16i > div:first-child {
+  padding-right :16px !important;
+}
+
+.vam {
+  vertical-align: middle;
+}
+
+.lh26 {
+  line-height: 26px;
+}
+
+.vamid {
+  vertical-align: middle;
+}
+
+.vsNormal {
+  white-space: normal !important; 
+}
+
+.fright{
+  float: right;
+}
+.timeline {
+  text-align:center;
+  width:100%;
+}
+
+.mycenter{
+      left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.vertical-line{
+  margin-left:auto;
+  margin-right:auto;
+  width: 6px;
+  height: 15px;
+}
+
+.exitnumber{        
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    background: #fff;
+    border: 2px solid #666;
+    color: #666;
+    font: 14px Arial, sans-serif;
+    word-wrap:normal;
+}
+
+.letters3{
+    padding-right: 13px;
+    padding-left: 3px;
+}
+.letters2{
+    padding-right: 9px;
+    padding-left: 7px;
+}
+
+.ombre{
+  -webkit-box-shadow: 3px 1px 5px 0px rgba(50, 50, 50, 0.7);
+-moz-box-shadow:    3px 1px 5px 0px rgba(50, 50, 50, 0.7);
+box-shadow:         3px 1px 5px 0px rgba(50, 50, 50, 0.7);
+}
+
+.O{background-color: #ff9800;}
+.R{background-color: #e51c23;}
+.V{background-color: #259b24;}
