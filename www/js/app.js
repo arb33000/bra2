@@ -92,10 +92,10 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         //reset des entrées/sorties pour l'alerte courante
         currentAlert.rocade.enter = 0;
         currentAlert.rocade.exit = 0;
-        action = actionToSet;
-        if (action == "getLiveTrafic") {
+        arb.action = actionToSet;
+        if (arb.action == "getLiveTrafic") {
             $state.go('tabs.enter');
-        } else if (action == "createAlert") {
+        } else if (arb.action == "createAlert") {
             $state.go('tabs.alert');
         }
     }
@@ -235,7 +235,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             case 'message':
                 {
                     dataFromNotif = e.payload.datainfo;
-                    $state.go('pageTraficLive');
+                    $state.go('tabs.pageTraficLive');
                     if (e.foreground) {
                         var soundfile = e.soundname || e.payload.sound;
                         var my_media = new Media("/android_asset/www/" + soundfile);
@@ -259,7 +259,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 
     onNotificationAPN = function(event) {
         dataFromNotif = JSON.parse(event.data);
-        $state.go('pageTraficLive');
+        $state.go('tabs.pageTraficLive');
         if (event.alert) {
             navigator.notification.alert(event.alert);
         }
@@ -571,9 +571,9 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         }
 
         $scope.goSelectExit = function(isEnter) {
-            action = "setExitAlert";
+            arb.action = "setExitAlert";
             if (isEnter) {
-                action = "setEnterAlert";
+                arb.action = "setEnterAlert";
             }
             $state.go('tabs.alert');
         }
@@ -660,17 +660,17 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     $scope.title = titleDirect;
     $scope.isEnter = true;
 
-    if (action == "setEnterAlert") {
+    if (arb.action == "setEnterAlert") {
         $scope.nextStep = 'tabs.pageNewAlert';
         $scope.title = titleUpdate;
         $scope.step = 2;
-    } else if (action == "setExitAlert") {
+    } else if (arb.action == "setExitAlert") {
         $scope.isEnter = false;
         $scope.txtparam = txtSortie;
         $scope.nextStep = 'tabs.pageNewAlert';
         $scope.title = titleUpdate;
         $scope.step = 2;
-    } else if (action == "createAlert"){
+    } else if (arb.action == "createAlert"){
         $scope.title = titleCreate;
     }
     $scope.exitNameList = exitNameList;
@@ -708,10 +708,10 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
                 $scope.isEnter = false;
                 $scope.txtparam = txtSortie;
             } else {
-                if (action == "getLiveTrafic") {
+                if (arb.action == "getLiveTrafic") {
                     $scope.nextStep = 'tabs.pageTraficLive';
                 }
-                if (action == "createAlert") {
+                if (arb.action == "createAlert") {
                     $scope.nextStep = 'tabs.pageNewAlert';
                 }
                 console.log('$scope.nextStep : ' + $scope.nextStep);
@@ -759,7 +759,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
                 })*/
             var deferred = $q.defer();
 
-            $http.jsonp("http://" + serverUrl + "/getinforocade?data=" + dataInput + "&callback=JSON_CALLBACK", {
+            $http.jsonp("http://" + arb.serverUrl + "/getinforocade?data=" + dataInput + "&callback=JSON_CALLBACK", {
                     timeout: deferred.promise
                 })
                 .error(function(data) {
@@ -962,12 +962,14 @@ function replaceAll(find, replace, str) {
     return str.replace(new RegExp(find, 'g'), replace);
 }
 
-var serverUrl = "alerterocadebordeaux.appspot.com";
+var arb = {};
+
+arb.serverUrl = "alerterocadebordeaux.appspot.com";
 //var serverUrl = "192.168.2.10:8888";
-var iv = "F27D5C9927726BCEFE7510B1BDD3D137";
-var salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
-var keySize = 128;
-var iterations = iterationCount = 10;
+arb.iv = "F27D5C9927726BCEFE7510B1BDD3D137";
+arb.salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
+arb.keySize = 128;
+arb.iterations = arb.iterationCount = 10;
 var dateUserInfo = null;
 var ionicPlatform = "";
 var platform = "PC";
@@ -1051,7 +1053,7 @@ var exitKm = {
 //var device = null;
 var byNum = true;
 var saveInHistoric = true;
-var action = "";
+arb.action = "";
 var dataFromNotif = "";
 var exitNameList = [{
     "number": "1",

@@ -5,19 +5,19 @@ angular.module('ionicApp.services', [])
             var doRequest = function(data, path) {
                 return $http({
                     method: 'JSONP',
-                    url: "http://"+serverUrl+"/" + path + "?data=" + data + "&callback=JSON_CALLBACK"
+                    url: "http://"+arb.serverUrl+"/" + path + "?data=" + data + "&callback=JSON_CALLBACK"
                 });
             }
             var saveAlert = function(alert) {
 				var data = new Array();
                 data = "{\"alerts\":[" + JSON.stringify(alert) + "]}";
 				
-                var aesUtil = new AesUtil(keySize, iterationCount);
-                var encryptdata = aesUtil.encrypt(salt, iv, dateUserInfo, data);
+                var aesUtil = new AesUtil(arb.keySize, arb.iterationCount);
+                var encryptdata = aesUtil.encrypt(arb.salt, arb.iv, dateUserInfo, data);
                 var alldata = "{\"uuid\":\"" + alert.uuid + "\",\"encrypteddata\":\"" + encryptdata + "\"}";
                 var alldataencodeuri = encodeURIComponent(alldata);
 
-				var url = "http://"+serverUrl+"/setalert?data=" + alldataencodeuri + "&callback=JSON_CALLBACK";
+				var url = "http://"+arb.serverUrl+"/setalert?data=" + alldataencodeuri + "&callback=JSON_CALLBACK";
 				
                 return $http({
                     method: 'JSONP',
@@ -34,18 +34,18 @@ angular.module('ionicApp.services', [])
                 var arrData = new Array();
                 arrData = "{\"alerts\":[" + JSON.stringify(data.alerts) + "]}";
 
-                var aesUtil = new AesUtil(keySize, iterationCount);
-                var encryptdata = aesUtil.encrypt(salt, iv, dateUserInfo, arrData);
+                var aesUtil = new AesUtil(arb.keySize, arb.iterationCount);
+                var encryptdata = aesUtil.encrypt(arb.salt, arb.iv, dateUserInfo, arrData);
                 var alldata = "{\"uuid\":\"" + alert.uuid + "\",\"encrypteddata\":\"" + encryptdata + "\"}";
                 var alldataencodeuri = encodeURIComponent(alldata);
 
                 return $http({
                     method: 'JSONP',
-                    url: "http://"+serverUrl+"/removealert?data=" + alldataencodeuri + "&callback=JSON_CALLBACK"
+                    url: "http://"+arb.serverUrl+"/removealert?data=" + alldataencodeuri + "&callback=JSON_CALLBACK"
                 });
             }
             var setUserInfo = function(platform, uuid, pushToken) {
-				var url = "http://"+serverUrl+"/setuserinfo?data={\"uuid\":" + platform + uuid + ",\"platform\":\"" + platform + "\",\"token_push\":\"" + pushToken + "\",\"date\":\"" + dateUserInfo + "\"}&callback=JSON_CALLBACK";			
+				var url = "http://"+arb.serverUrl+"/setuserinfo?data={\"uuid\":" + platform + uuid + ",\"platform\":\"" + platform + "\",\"token_push\":\"" + pushToken + "\",\"date\":\"" + dateUserInfo + "\"}&callback=JSON_CALLBACK";			
 
                 return $http({
                     method: 'JSONP',
@@ -57,16 +57,16 @@ angular.module('ionicApp.services', [])
 	
 				var url = "";
 				if(alertList == null) {
-					url = "http://"+serverUrl+"/checkalert?data={\"uuid\":\"" + platform + uuid + "\",\"platform\":\"" + platform + "\"}&callback=JSON_CALLBACK";
+					url = "http://"+arb.serverUrl+"/checkalert?data={\"uuid\":\"" + platform + uuid + "\",\"platform\":\"" + platform + "\"}&callback=JSON_CALLBACK";
 				} else {
 					var data = new Array();
 					data = "{\"alerts\":[" + JSON.stringify(alertList) + "]}";
 					
-					var aesUtil = new AesUtil(keySize, iterationCount);
-					var encryptdata = aesUtil.encrypt(salt, iv, dateUserInfo, data);
+					var aesUtil = new AesUtil(arb.keySize, arb.iterationCount);
+					var encryptdata = aesUtil.encrypt(arb.salt, arb.iv, dateUserInfo, data);
 					//var alldata = "{\"encrypteddata\":\"" + encryptdata + "\"}";
 					var alldataencodeuri = encodeURIComponent(encryptdata);
-					url = "http://"+serverUrl+"/checkalert?data={\"uuid\":\"" + platform + uuid + "\",\"platform\":\"" + platform + "\",\"alertlist\":\"" + alldataencodeuri+ "\"}&callback=JSON_CALLBACK";
+					url = "http://"+arb.serverUrl+"/checkalert?data={\"uuid\":\"" + platform + uuid + "\",\"platform\":\"" + platform + "\",\"alertlist\":\"" + alldataencodeuri+ "\"}&callback=JSON_CALLBACK";
 				}
 
                 return $http({
