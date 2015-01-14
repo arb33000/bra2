@@ -469,8 +469,8 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 })
 
 
-.controller('newAlertCtrl', ['$scope', '$ionicModal', 'localStorageService', 'GAEService', '$state',
-    function($scope, $ionicModal, localStorageService, GAEService, $state) {
+.controller('newAlertCtrl', ['$scope', '$ionicScrollDelegate','$ionicModal', 'localStorageService', 'GAEService', '$state',
+    function($scope, $ionicScrollDelegate, $ionicModal, localStorageService, GAEService, $state) {
         var alertid = localStorageService.get('alertid');
         var creationMode = true;
         $scope.advancedView = false;
@@ -576,6 +576,11 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             $state.go('tabs.alert');
         }
 
+        $scope.toogleAdvancedView = function() {
+            $scope.advancedView=!$scope.advancedView;
+            $ionicScrollDelegate.resize();
+        }
+
         $scope.setToogleOff = function(id) {
             if (id == 0 && $scope.alert.isAdvancedInf.checked) {
                 $scope.alert.isAdvancedSup.checked = false;
@@ -663,7 +668,9 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         $scope.nextStep = 'tabs.pageNewAlert';
         $scope.title = titleUpdate;
         $scope.step = 2;
-    } 
+    } else if (action == "createAlert"){
+        $scope.title = titleCreate;
+    }
     $scope.exitNameList = exitNameList;
 
     $scope.setMode = function(item) {
