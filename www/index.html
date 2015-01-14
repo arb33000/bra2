@@ -35,22 +35,20 @@
     <ion-nav-view class="slide-left-right-ios7"></ion-nav-view>
 
     <script id="templates/tabs.html" type="text/ng-template">
-        <ion-view>
-            <ion-tabs class="tabs-striped tabs-icon-top tabs-background-calm tabs-color-light">
-                <ion-tab title="Home" icon="ion-ios7-home-outline" ui-sref="tabs.home">
-                    <ion-nav-view name="home-tab"></ion-nav-view>
-                </ion-tab>
-                <ion-tab title="Trafic en direct" icon="ion-ios7-bolt-outline" ng-click="setAction('getLiveTrafic')">
-                    <ion-nav-view name="enter-tab"></ion-nav-view>
-                </ion-tab>
-                <ion-tab title="Alerte" icon="ion-ios7-plus-outline" ng-click="setAction('createAlert')">
-                    <ion-nav-view name="alert-tab"></ion-nav-view>
-                </ion-tab>
-                <ion-tab title="Carte" icon="ion-map" ui-sref="tabs.map">
-                    <ion-nav-view name="map-tab"></ion-nav-view>
-                </ion-tab>
-            </ion-tabs>
-        </ion-view>
+        <ion-tabs class="tabs-striped tabs-icon-top tabs-background-calm tabs-color-light">
+            <ion-tab title="Home" icon="ion-ios7-home-outline" ui-sref="tabs.home">
+                <ion-nav-view name="home-tab"></ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Trafic en direct" icon="ion-ios7-bolt-outline" ng-click="setAction('getLiveTrafic')">
+                <ion-nav-view name="enter-tab"></ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Alerte" icon="ion-ios7-plus-outline" ng-click="setAction('createAlert')">
+                <ion-nav-view name="alert-tab"></ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Carte" icon="ion-map" ui-sref="tabs.map">
+                <ion-nav-view name="map-tab"></ion-nav-view>
+            </ion-tab>
+        </ion-tabs>
     </script>
 
     <script id="modalAideGeneral.html" type="text/ng-template">
@@ -134,7 +132,7 @@
                 </div>
 
                 <div class="button-bar button-full">
-                    <a class="button button-energized" ng-repeat="alert in lastAlertList" ng-click="goResult(alert)">{{alert.rocade.enter}} <i class="icon ion-arrow-right-c fs16"></i> {{alert.rocade.exit}}</a>
+                    <a class="button button-energized" ng-repeat="alert in lastAlertList" ng-click="goResult(alert)">{{alert.rocade.enter}} <i class="icon ion-arrow-right-c"></i> {{alert.rocade.exit}}</a>
                 </div>
 
                 <div ng-show="showAlertBar" class="item item-calm item-button-left txtcenter pl0">
@@ -192,7 +190,7 @@
                         <button class="button button-assertive" ng-click="pluginHour()">{{alert.hour}}</button>
                     </label>
                     <ion-checkbox class="item item-balanced checkbox-assertive balanced-bg light" ng-repeat="item in alert.days" ng-model="item.checked" ng-checked="item.checked">{{ item.text }}</ion-checkbox>
-                    <a class="item item-calm item-icon-left" ng-click="advancedView=!advancedView">
+                    <a class="item item-calm item-icon-left" ng-click="toogleAdvancedView()">
                         <i class="icon ion-ios7-gear-outline"></i>Paramètres avancés...
                     </a>
                     <div class="item item-balanced item-icon-right" ng-show="advancedView">
@@ -235,7 +233,7 @@
                     <a ng-class="[button, actif2, icon2]" ng-click="setMode(2)">Par ville</a>
                 </div>
                 </br>
-                <div ng-show="byNum">
+                <div ng-show="byNum" class="txtcenter">
                     <button ng-repeat="item in exitList" ng-class="getClass(item)" data="{{item}}" ng-click="selectButton(item)">{{item}}</button>
                 </div>
                 <div ng-show="!byNum">

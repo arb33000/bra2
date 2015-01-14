@@ -8,6 +8,7 @@ body {  overflow: hidden;  -ms-content-zooming: none; }
 .button.button-energized {
     color: #444444;
 }
+
 .exitButton {
 border-radius: 0px;
 margin: 0 8px 8px 0; 
@@ -21,7 +22,7 @@ margin: 0 8px 8px 0;
 
 .w42 {width: 42px;}
 
-.fs16 {font-size:16px !important;}
+.fs16 {font-size:16px;}
 .fs24 {font-size:24px;}
 .fs30 {font-size:30px;}
 .fs36 {font-size:36px;}

@@ -2,6 +2,8 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(0);
+    $ionicConfigProvider.tabs.style("striped");
+    $ionicConfigProvider.tabs.position("bottom");
     $stateProvider
         .state('tabs', {
             url: "/tab",
