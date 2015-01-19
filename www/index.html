@@ -9,8 +9,10 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Alerte Rocade Bordeaux</title>
 
+    <link href="css/ionic14.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+        
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -30,7 +32,7 @@
 </head>
 
 <body>
-    <ion-nav-bar class="bar-calm balanced-border nav-title-slide-ios7" align-title="center">
+    <ion-nav-bar nav-transition="none" nav-direction="none" class="bar-calm balanced-border nav-title-slide-ios7" align-title="center">
     </ion-nav-bar>
     <ion-nav-view class="slide-left-right-ios7"></ion-nav-view>
 
@@ -125,7 +127,9 @@
             <ion-nav-buttons side="right">
                 <button class="button button-icon ion-ios7-information-outline" ng-click="modalInfo.show()"></button>
             </ion-nav-buttons>
-            <ion-content class="positive-bg">
+            <ion-content class="positive-bg" has-tabs="true">
+
+                <p ng-show="lastAlertList===null && !showAlertBar"class="padding">Bienvenue sur Alerte Rocade Bordeaux.<br/>Utilisez le bouton <i class="black icon ion-ios7-bolt-outline fs16"></i>&nbsp;trafic en direct dans le menu ci-dessus. Créez des alarmes avec le bouton <i class="black icon ion-ios7-plus-outline fs16"></i></p>
 
                 <div class="button-bar button-full">
                     <a ng-hide="lastAlertList===null" class="button button-assertive">Dernières recherches</a>
@@ -166,9 +170,8 @@
     </script>
 
     <script id="newalert.html" type="text/ng-template">
-        <ion-view>
-            <ion-nav-title>{{title}}</ion-nav-title>
-            <ion-content class="positive-bg">
+        <ion-view view-title={{title}}>
+            <ion-content class="positive-bg" has-tabs="true">
                 <div class="list">
                     <div ng-click="goSelectExit(true)" class="item item-balanced item-button-right">
                         Entrée
@@ -225,8 +228,8 @@
     </script>
 
     <script id="pageListExit.html" type="text/ng-template">
-        <ion-view view-title="{{title}}">
-            <ion-content class="padding positive-bg">
+        <ion-view view-title={{title}}>
+            <ion-content class="padding positive-bg" has-tabs="true">
                 <p class="dark fs16">Sélectionnez votre <span class="strong">{{txtparam}}</span> de rocade par numéro ou par ville desservie.</p>
                 <div class="button-bar">
                     <a ng-class="[button, actif1, icon1]" ng-click="setMode(1)">Par numéro</a>
@@ -254,17 +257,17 @@
     </script>
 
     <script id="pageLoading.html" type="text/ng-template">
-        <ion-content class="txtcenter center calm-bg light pt80">
-            <i class="icon ion-ios7-reloading light fs50"></i>
-        </ion-content>
+            <ion-content class="txtcenter center calm-bg light pt80">
+                <i class="icon ion-ios7-reloading light fs50"></i>
+            </ion-content>
     </script>
 
     <script id="map.html" type="text/ng-template">
         <ion-view view-title="Carte">
-            <ion-content class="pt10">
+            <ion-content class="positive-bg pt10" has-tabs="true">
                 <div class="calque">
                     <div class="calquea">
-                        <img class="imgrocade" src="img/sp1_bordeaux_v01b.gif">
+                        <img class="imgrocade" src="img/sp1_bordeaux_arb.gif">
                     </div>
                     <div class="calqueb">
                         <img class="imgrocade" src="http://diffusion-numerique.info-routiere.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux">
@@ -279,7 +282,7 @@
 
     <script id="pageTraficLive.html" type="text/ng-template">
         <ion-view view-title="Fluidité du trafic">
-            <ion-content class="padding txtcenter center calm-bg light">
+            <ion-content class="padding txtcenter center calm-bg light" has-tabs="true">
                 <ion-refresher refreshing-icon="ion-ios7-reloading light" pulling-icon="ion-ios7-arrow-thin-down light" on-refresh="doRefresh()"></ion-refresher>
                 <p class="light fs24">{{currentAlert.rocade.enter}}<i class="icon padding icon ion-arrow-right-c"></i>{{currentAlert.rocade.exit}}</p>
                 <div class="row">

@@ -3,7 +3,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.tabs.style("striped");
-    $ionicConfigProvider.tabs.position("bottom");
+    $ionicConfigProvider.tabs.position("top");
     $stateProvider
         .state('tabs', {
             url: "/tab",
@@ -343,11 +343,6 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         saveInHistoric = false;
         $state.go('tabs.pageTraficLive');
     }
-    /*$scope.setAction = function(actionToSet) {
-        action = actionToSet;
-        $state.go('pageListEnter');
-    }*/
-
 
     $scope.getSyncClass = function(alert) {
         if (alert.sync) {
@@ -386,11 +381,6 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             $scope.data.showDelete = false;
         }
     }
-
-    /*$scope.deleteHistoricAlert = function($index) {
-        $scope.lastAlertList.splice($index, 1);
-        localStorageService.set('lastAlertList', $scope.lastAlertList);
-    }*/
 
     $scope.getTextFormDays = function(days, activate) {
         var retour = "";
@@ -746,17 +736,6 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         $scope.doRefresh = function() {
             trackPage("Refresh");
             var dataInput = JSON.stringify(currentAlert.rocade);
-            /*GAEService.getInfo(dataInput)
-                .success(function(data) {
-                    $scope.hide();
-                    $scope.displayResult(data);
-                })
-                .error(function(data) {
-                    console.log('ERROR ' + data);
-                })
-                .finally(function() {
-                    $scope.$broadcast('scroll.refreshComplete');
-                })*/
             var deferred = $q.defer();
 
             $http.jsonp("http://" + arb.serverUrl + "/getinforocade?data=" + dataInput + "&callback=JSON_CALLBACK", {
@@ -965,7 +944,6 @@ function replaceAll(find, replace, str) {
 var arb = {};
 
 arb.serverUrl = "alerterocadebordeaux.appspot.com";
-//var serverUrl = "192.168.2.10:8888";
 arb.iv = "F27D5C9927726BCEFE7510B1BDD3D137";
 arb.salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
 arb.keySize = 128;

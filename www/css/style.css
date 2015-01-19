@@ -18,6 +18,10 @@ margin: 0 8px 8px 0;
 	text-align: center;
 }
 
+.black{
+  color:000;
+}
+
 .ita {font-style:italic};
 
 .w42 {width: 42px;}
