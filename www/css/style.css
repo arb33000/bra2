@@ -1,143 +1,136 @@
 /* Empty. Add your own CSS if you like */
 
-body {  overflow: hidden;  -ms-content-zooming: none; }
-
+body {
+    overflow: hidden;
+    -ms-content-zooming: none;
+}
 .button.button-assertive {
     color: #444444;
 }
 .button.button-energized {
     color: #444444;
 }
-
+.item.item-assertive {
+    color: #444444;
+}
 .exitButton {
-border-radius: 0px;
-margin: 0 8px 8px 0; 
+    border-radius: 0px;
+    margin: 0 8px 8px 0;
 }
-
 .txtcenter {
-	text-align: center;
+    text-align: center;
 }
-
-.black{
-  color:000;
+.fsicon:before {
+    font-size: 16px !important;
+    line-height: 38px !important;
 }
-
-.ita {font-style:italic};
-
-.w42 {width: 42px;}
-
-.fs16 {font-size:16px;}
-.fs24 {font-size:24px;}
-.fs30 {font-size:30px;}
-.fs36 {font-size:36px;}
-.fs50 {font-size:50px;}
-.strong {font-weight: bold; }
-
-
-
+.ita {
+    font-style: italic
+}
+;
+.w42 {
+    width: 42px;
+}
+.fs16 {
+    font-size: 16px;
+}
+.fs24 {
+    font-size: 24px;
+}
+.fs30 {
+    font-size: 30px;
+}
+.fs36 {
+    font-size: 36px;
+}
+.fs50 {
+    font-size: 50px;
+}
+.strong {
+    font-weight: bold;
+}
 .calquea {
     border: 0 none;
     left: 0;
     position: relative;
     top: 0;
 }
-
 .imgrocade {
-  width:100%;
-  max-width:582px;
+    width: 100%;
+    max-width: 582px;
 }
-
 .calqueb {
-  width:100%;
+    width: 100%;
     border: 0 none;
     left: 0;
     position: absolute;
     top: 0;
 }
-
 .calque {
-  text-align:center;
-  position: relative;
+    text-align: center;
+    position: relative;
 }
-
-
 .floatR {
-  float:right;
+    float: right;
 }
-
 .floatL {
-  float:left;
+    float: left;
 }
-
 .pt80 {
-  padding-top: 80px;
+    padding-top: 80px;
 }
-
 .pt10 {
-	padding-top: 10px;
+    padding-top: 10px;
 }
-
 .pl20 {
-  padding-left: 20px;
+    padding-left: 20px;
 }
-
 .pl15 {
-  padding-left: 15px;
+    padding-left: 15px;
 }
-
 .pr5 {
-  padding-right: 5px;
+    padding-right: 5px;
 }
-
 .pl0 {
-  padding-left: 0px;
+    padding-left: 0px;
 }
-
 .p16i > div:first-child {
-  padding-right :16px !important;
+    padding-right: 16px !important;
 }
-
 .vam {
-  vertical-align: middle;
+    vertical-align: middle;
 }
-
 .lh26 {
-  line-height: 26px;
+    line-height: 26px;
 }
-
 .vamid {
-  vertical-align: middle;
+    vertical-align: middle;
 }
-
 .vsNormal {
-  white-space: normal !important; 
+    white-space: normal !important;
 }
-
-.fright{
-  float: right;
+.fright {
+    float: right;
 }
 .timeline {
-  text-align:center;
-  width:100%;
+    text-align: center;
+    width: 100%;
 }
-
-.mycenter{
-      left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;
+.mycenter {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.vertical-line{
-  margin-left:auto;
-  margin-right:auto;
-  width: 6px;
-  height: 15px;
+.vertical-line {
+    margin-left: auto;
+    margin-right: auto;
+    width: 6px;
+    height: 15px;
 }
-
-.exitnumber{        
-    margin-left:auto;
-    margin-right:auto;
+.exitnumber {
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 50%;
     width: 36px;
     height: 36px;
@@ -146,24 +139,27 @@ margin: 0 8px 8px 0;
     border: 2px solid #666;
     color: #666;
     font: 14px Arial, sans-serif;
-    word-wrap:normal;
+    word-wrap: normal;
 }
-
-.letters3{
+.letters3 {
     padding-right: 13px;
     padding-left: 3px;
 }
-.letters2{
+.letters2 {
     padding-right: 9px;
     padding-left: 7px;
 }
-
-.ombre{
-  -webkit-box-shadow: 3px 1px 5px 0px rgba(50, 50, 50, 0.7);
--moz-box-shadow:    3px 1px 5px 0px rgba(50, 50, 50, 0.7);
-box-shadow:         3px 1px 5px 0px rgba(50, 50, 50, 0.7);
+.ombre {
+    -webkit-box-shadow: 3px 1px 5px 0px rgba(50, 50, 50, 0.7);
+    -moz-box-shadow: 3px 1px 5px 0px rgba(50, 50, 50, 0.7);
+    box-shadow: 3px 1px 5px 0px rgba(50, 50, 50, 0.7);
 }
-
-.O{background-color: #ff9800;}
-.R{background-color: #e51c23;}
-.V{background-color: #259b24;}
+.O {
+    background-color: #ff9800;
+}
+.R {
+    background-color: #e51c23;
+}
+.V {
+    background-color: #259b24;
+}

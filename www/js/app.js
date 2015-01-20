@@ -87,14 +87,16 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     }
 })
 
-.controller('TabsCtrl', function($scope, $state) {
+.controller('TabsCtrl', function($scope, $state, $location) {
     $scope.setAction = function(actionToSet) {
         //reset des entrées/sorties pour l'alerte courante
-        currentAlert.rocade.enter = 0;
-        currentAlert.rocade.exit = 0;
         arb.action = actionToSet;
         if (arb.action == "getLiveTrafic") {
-            $state.go('tabs.enter');
+            if ($location.$$path == '/tab/enter') {
+                $state.reload();
+            } else {
+                $state.go('tabs.enter');
+            }
         } else if (arb.action == "createAlert") {
             $state.go('tabs.alert');
         }
@@ -103,7 +105,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 
 
 .controller('HomeCtrl', function($scope, $ionicModal, GAEService, localStorageService, $state) {
-    var part = document.URL.split("#");
+    /*var part = document.URL.split("#");
     if (part[1] != null && part[1] != "") {
         GAEService.getInfo(part[1]).
         success(function(data) {
@@ -111,15 +113,15 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             $state.go('tabs.pageTraficLive');
         }).
         error(function(data) {});
-    }
+    }*/
 
     //Init à 0 dans le cas ou on revient à la home apres une recherche
     //currentAlert.rocade.enter = 0;
     //currentAlert.rocade.exit = 0;
     trackPage("HomePage");
 
+    $scope.lastAlertList = lastAlertList;
     currentAlert.id = null;
-    $scope.lastAlertList = localStorageService.get('lastAlertList');
     $scope.data = {};
     $scope.data.showDelete = false;
 
@@ -461,7 +463,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 })
 
 
-.controller('newAlertCtrl', ['$scope', '$ionicScrollDelegate','$ionicModal', 'localStorageService', 'GAEService', '$state',
+.controller('newAlertCtrl', ['$scope', '$ionicScrollDelegate', '$ionicModal', 'localStorageService', 'GAEService', '$state',
     function($scope, $ionicScrollDelegate, $ionicModal, localStorageService, GAEService, $state) {
         var alertid = localStorageService.get('alertid');
         var creationMode = true;
@@ -569,7 +571,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         }
 
         $scope.toogleAdvancedView = function() {
-            $scope.advancedView=!$scope.advancedView;
+            $scope.advancedView = !$scope.advancedView;
             $ionicScrollDelegate.resize();
         }
 
@@ -615,7 +617,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     }
 ])
 
-.controller('PageExitCtrl', function($scope, $ionicTabsDelegate, $state) {
+.controller('PageExitCtrl', function($scope, $ionicTabsDelegate, $state, $ionicScrollDelegate) {
     $scope.exitList = exitList;
     console.log("PageExitCtrl");
     var inactif = "button-outline";
@@ -630,6 +632,8 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     var titleUpdate = "Modification alerte";
     $scope.step = 1;
     $scope.button = "button button-calm icon-left";
+    currentAlert.rocade.enter = 0;
+    currentAlert.rocade.exit = 0;
 
     if (byNum) {
         $scope.actif1 = "";
@@ -660,7 +664,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         $scope.nextStep = 'tabs.pageNewAlert';
         $scope.title = titleUpdate;
         $scope.step = 2;
-    } else if (arb.action == "createAlert"){
+    } else if (arb.action == "createAlert") {
         $scope.title = titleCreate;
     }
     $scope.exitNameList = exitNameList;
@@ -697,6 +701,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
                 $scope.step++;
                 $scope.isEnter = false;
                 $scope.txtparam = txtSortie;
+                $ionicScrollDelegate.scrollTop();
             } else {
                 if (arb.action == "getLiveTrafic") {
                     $scope.nextStep = 'tabs.pageTraficLive';
@@ -876,7 +881,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             $scope.currentAlert = currentAlert;
             //Sauvegarde des 4 dernières alertes
             if (saveInHistoric) {
-                var lastAlertList = localStorageService.get('lastAlertList');
+                lastAlertList = localStorageService.get('lastAlertList');
                 if (lastAlertList === null) {
                     lastAlertList = [];
                 }
@@ -900,8 +905,11 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 ])
 
 
-.run(function($ionicPlatform, $location, $rootScope) {
+.run(function($ionicPlatform, $location, $rootScope, localStorageService) {
     $ionicPlatform.ready(function() {
+
+        lastAlertList = localStorageService.get('lastAlertList');
+        alertList = localStorageService.get('alertList');
 
         $ionicPlatform.onHardwareBackButton(function() {
             if ($location.$$path == '/tab/home') {
@@ -948,6 +956,7 @@ arb.iv = "F27D5C9927726BCEFE7510B1BDD3D137";
 arb.salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
 arb.keySize = 128;
 arb.iterations = arb.iterationCount = 10;
+var lastAlertList;
 var dateUserInfo = null;
 var ionicPlatform = "";
 var platform = "PC";

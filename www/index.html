@@ -129,14 +129,14 @@
             </ion-nav-buttons>
             <ion-content class="positive-bg" has-tabs="true">
 
-                <p ng-show="lastAlertList===null && !showAlertBar"class="padding">Bienvenue sur Alerte Rocade Bordeaux.<br/>Utilisez le bouton <i class="black icon ion-ios7-bolt-outline fs16"></i>&nbsp;trafic en direct dans le menu ci-dessus. Créez des alarmes avec le bouton <i class="black icon ion-ios7-plus-outline fs16"></i></p>
+                <p ng-show="lastAlertList===null && alertList===null"class="padding">Bienvenue sur Alerte Rocade Bordeaux.<br/>Utilisez le bouton <i class="icon ion-ios7-bolt-outline fs16"></i>&nbsp;trafic en direct dans le menu ci-dessus. Créez des alarmes avec le bouton <i class="icon ion-ios7-plus-outline fs16"></i></p>
 
-                <div class="button-bar button-full">
-                    <a ng-hide="lastAlertList===null" class="button button-assertive">Dernières recherches</a>
+                <div style="margin-bottom:0px" class="list">
+                    <div ng-hide="lastAlertList===null" class="item item-assertive txtcenter dark">Dernières recherches</div>
                 </div>
 
                 <div class="button-bar button-full">
-                    <a class="button button-energized" ng-repeat="alert in lastAlertList" ng-click="goResult(alert)">{{alert.rocade.enter}} <i class="icon ion-arrow-right-c"></i> {{alert.rocade.exit}}</a>
+                    <a style="padding:0px" class="button button-energized" ng-repeat="alert in lastAlertList" ng-click="goResult(alert)">{{alert.rocade.enter}} <i class="fsicon icon ion-arrow-right-c"></i> {{alert.rocade.exit}}</a>
                 </div>
 
                 <div ng-show="showAlertBar" class="item item-calm item-button-left txtcenter pl0">
@@ -264,7 +264,7 @@
 
     <script id="map.html" type="text/ng-template">
         <ion-view view-title="Carte">
-            <ion-content class="positive-bg pt10" has-tabs="true">
+            <ion-content class="positive-bg pt10" has-tabs="true" scroll="false">
                 <div class="calque">
                     <div class="calquea">
                         <img class="imgrocade" src="img/sp1_bordeaux_arb.gif">
