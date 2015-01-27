@@ -342,11 +342,11 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         }
     }
 
-    /*$scope.goResult = function(alert) {
+    $scope.goResult = function(alert) {
         currentAlert = alert;
         saveInHistoric = false;
-        $state.go('tabs.pageTraficLive', {}, {reload: true});
-    }*/
+        $state.go('tabs.pageTraficLive');
+    }
 
     $scope.getSyncClass = function(alert) {
         if (alert.sync) {
