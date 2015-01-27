@@ -9,7 +9,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Alerte Rocade Bordeaux</title>
 
-    <link href="css/ionic14.css" rel="stylesheet">
+    <!--<link href="css/ionic14.css" rel="stylesheet">-->
     <link href="css/app.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
         
@@ -32,19 +32,19 @@
 </head>
 
 <body>
-    <ion-nav-bar nav-transition="none" nav-direction="none" class="bar-calm balanced-border nav-title-slide-ios7" align-title="center">
+    <ion-nav-bar nav-transition="none" nav-direction="none" class="bar-calm balanced-border nav-title-slide-ios" align-title="center">
     </ion-nav-bar>
-    <ion-nav-view class="slide-left-right-ios7"></ion-nav-view>
+    <ion-nav-view class="slide-left-right-ios"></ion-nav-view>
 
     <script id="templates/tabs.html" type="text/ng-template">
         <ion-tabs class="tabs-striped tabs-icon-top tabs-background-calm tabs-color-light">
-            <ion-tab title="Home" icon="ion-ios7-home-outline" ui-sref="tabs.home">
+            <ion-tab title="Home" icon="ion-ios-home-outline" ui-sref="tabs.home">
                 <ion-nav-view name="home-tab"></ion-nav-view>
             </ion-tab>
-            <ion-tab title="Trafic en direct" icon="ion-ios7-bolt-outline" ng-click="setAction('getLiveTrafic')">
+            <ion-tab title="Trafic en direct" icon="ion-ios-bolt-outline" ng-click="setAction('getLiveTrafic')">
                 <ion-nav-view name="enter-tab"></ion-nav-view>
             </ion-tab>
-            <ion-tab title="Alerte" icon="ion-ios7-plus-outline" ng-click="setAction('createAlert')">
+            <ion-tab title="Alerte" icon="ion-ios-plus-outline" ng-click="setAction('createAlert')">
                 <ion-nav-view name="alert-tab"></ion-nav-view>
             </ion-tab>
             <ion-tab title="Carte" icon="ion-map" ui-sref="tabs.map">
@@ -57,7 +57,7 @@
         <ion-modal-view ng-controller="modalAideGeneralCtrl">
             <ion-header-bar class="bar bar-header bar-calm">
                 <h1 class="title">Aide</h1>
-                <a class="button button-icon icon ion-ios7-close-outline" ng-click="exitSaveChoice()"></a>
+                <a class="button button-icon icon ion-ios-close-outline" ng-click="exitSaveChoice()"></a>
             </ion-header-bar>
             <ion-content class="positive-bg">
                 <div class="card">
@@ -73,10 +73,10 @@
                         <br>
                         <br> Il existe <b>3</b> types d'alerte :
                         <br>
-                        <div class="pt10"><i class="icon ion-ios7-checkmark-empty dark vam fs24"></i> L'alerte <b>par défaut</b> vous notifiera quel que soit l'état du trafic.</div>
-                        <div class="pt10"><i class="icon ion-ios7-checkmark-empty dark vam fs24"></i> Une première <b>alerte avancée</b> vous permet de définir un seuil à partir duquel vous souhaitez être notifié. Exemple : <i class="ita">"Quand je pars au boulot, préviens moi à 8h00 seulement si la fluidité du trafic est inéfieure à 80% entre les sorties 18 et 11."</i>
+                        <div class="pt10"><i class="icon ion-ios-checkmark-empty dark vam fs24"></i> L'alerte <b>par défaut</b> vous notifiera quel que soit l'état du trafic.</div>
+                        <div class="pt10"><i class="icon ion-ios-checkmark-empty dark vam fs24"></i> Une première <b>alerte avancée</b> vous permet de définir un seuil à partir duquel vous souhaitez être notifié. Exemple : <i class="ita">"Quand je pars au boulot, préviens moi à 8h00 seulement si la fluidité du trafic est inéfieure à 80% entre les sorties 18 et 11."</i>
                         </div>
-                        <div class="pt10"><i class="icon ion-ios7-checkmark-empty dark vam fs24"></i> Une seconde <b>alerte avancée</b> vous permet d'être notifié seulement quand un certain niveau de fluidité est atteint. Exemple : <i class="ita">"En fin de journée, à partir de 17h30, préviens moi dès que la fluidité du trafic est supérieure à 85% entre les sorties 11 et 18."</i>
+                        <div class="pt10"><i class="icon ion-ios-checkmark-empty dark vam fs24"></i> Une seconde <b>alerte avancée</b> vous permet d'être notifié seulement quand un certain niveau de fluidité est atteint. Exemple : <i class="ita">"En fin de journée, à partir de 17h30, préviens moi dès que la fluidité du trafic est supérieure à 85% entre les sorties 11 et 18."</i>
                         </div>
 
                     </div>
@@ -90,7 +90,7 @@
         <ion-modal-view>
             <ion-header-bar class="bar bar-header bar-calm">
                 <h1 class="title">Informations</h1>
-                <a class="button button-icon icon ion-ios7-close-outline" ng-click="modalInfo.hide()"></a>
+                <a class="button button-icon icon ion-ios-close-outline" ng-click="modalInfo.hide()"></a>
             </ion-header-bar>
             <ion-content class="positive-bg">
                 <div class="card">
@@ -122,10 +122,10 @@
     <script id="home.html" type="text/ng-template">
         <ion-view view-title="Alerte Rocade">
             <ion-nav-buttons side="left">
-                <button class="button button-icon ion-ios7-help-outline" ng-click="modal.show()"></button>
+                <button class="button button-icon ion-ios-help-outline" ng-click="modal.show()"></button>
             </ion-nav-buttons>
             <ion-nav-buttons side="right">
-                <button class="button button-icon ion-ios7-information-outline" ng-click="modalInfo.show()"></button>
+                <button class="button button-icon ion-ios-information-outline" ng-click="modalInfo.show()"></button>
             </ion-nav-buttons>
             <ion-content class="positive-bg" has-tabs="true">
 
@@ -140,7 +140,7 @@
                 <div ng-show="showAlertBar" class="item item-calm item-button-left txtcenter pl0">
                     Mes alertes
                     <button class="button button-icon light" ng-click="data.showDelete = !data.showDelete">
-                        <i class="icon ion-ios7-minus-outline"></i>
+                        <i class="icon ion-ios-minus-outline"></i>
                     </button>
                 </div>
 
@@ -163,7 +163,7 @@
                         </ion-option-button>
                     </ion-item>
                 </ion-list>
-                <p ng-show="showAide" class="padding">Bienvenue sur Alerte Rocade Bordeaux.<br/>Utilisez le bouton <i class='icon ion-ios7-bolt-outline fs16'></i>&nbsp;trafic en direct dans le menu ci-dessus. Créez des alarmes avec le bouton <i class='icon ion-ios7-plus-outline fs16'></i></p>
+                <p ng-show="showAide" class="padding">Bienvenue sur Alerte Rocade Bordeaux.<br/>Utilisez le bouton <i class='icon ion-ios-bolt-outline fs16'></i>&nbsp;trafic en direct dans le menu ci-dessus. Créez des alarmes avec le bouton <i class='icon ion-ios-plus-outline fs16'></i></p>
             </ion-content>
         </ion-view>
     </script>
@@ -193,11 +193,11 @@
                     </label>
                     <ion-checkbox class="item item-balanced checkbox-assertive balanced-bg light" ng-repeat="item in alert.days" ng-model="item.checked" ng-checked="item.checked">{{ item.text }}</ion-checkbox>
                     <a class="item item-calm item-icon-left" ng-click="toogleAdvancedView()">
-                        <i class="icon ion-ios7-gear-outline"></i>Paramètres avancés...
+                        <i class="icon ion-ios-gear-outline"></i>Paramètres avancés...
                     </a>
                     <div class="item item-balanced item-icon-right" ng-show="advancedView">
                         <h3 class="vsNormal light">Par défaut vous serez notifié quel que soit l'état du trafic. Les paramètres ci-dessous vous permettent d'affiner les cas de notifications.</h3>
-                        <i class="icon ion-ios7-help-outline" ng-click="modal.show()"></i>
+                        <i class="icon ion-ios-help-outline" ng-click="modal.show()"></i>
                     </div>
                     <ion-toggle class="item-balanced" ng-show="advancedView" ng-model="alert.isAdvancedInf.checked" ng-change="setToogleOff(0)" toggle-class="toggle-assertive">
                         <h3 class="vsNormal light">M&apos;alerter à
@@ -257,7 +257,7 @@
 
     <script id="pageLoading.html" type="text/ng-template">
             <ion-content class="txtcenter center calm-bg light pt80">
-                <i class="icon ion-ios7-reloading light fs50"></i>
+                <i class="icon ion-ios-reloading light fs50"></i>
             </ion-content>
     </script>
 
@@ -282,7 +282,7 @@
     <script id="pageTraficLive.html" type="text/ng-template">
         <ion-view view-title="Fluidité du trafic">
             <ion-content class="padding txtcenter center calm-bg light" has-tabs="true">
-                <ion-refresher refreshing-icon="ion-ios7-reloading light" pulling-icon="ion-ios7-arrow-thin-down light" on-refresh="doRefresh()"></ion-refresher>
+                <ion-refresher refreshing-icon="ion-ios-reloading light" pulling-icon="ion-ios-arrow-thin-down light" on-refresh="doRefresh()"></ion-refresher>
                 <p class="light fs24">{{currentAlert.rocade.enter}}<i class="icon padding icon ion-arrow-right-c"></i>{{currentAlert.rocade.exit}}</p>
                 <div class="row">
                     <div class="col" ng-repeat="route in data.info.infoSensModel">
