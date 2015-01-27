@@ -120,10 +120,12 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     //currentAlert.rocade.exit = 0;
     trackPage("HomePage");
 
-    $scope.lastAlertList = lastAlertList;
+    $scope.lastAlertList = localStorageService.get('lastAlertList');;
     currentAlert.id = null;
     $scope.data = {};
     $scope.data.showDelete = false;
+
+    $scope.showAide=lastAlertList===null && alertList===null;   
 
     var pushNotification = window.plugins.pushNotification;
 
@@ -237,7 +239,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             case 'message':
                 {
                     dataFromNotif = e.payload.datainfo;
-                    $state.go('tabs.pageTraficLive');
+                    $state.go('tabs.pageTraficLive', {}, {reload: true});
                     if (e.foreground) {
                         var soundfile = e.soundname || e.payload.sound;
                         var my_media = new Media("/android_asset/www/" + soundfile);
@@ -261,7 +263,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 
     onNotificationAPN = function(event) {
         dataFromNotif = JSON.parse(event.data);
-        $state.go('tabs.pageTraficLive');
+        $state.go('tabs.pageTraficLive', {}, {reload: true});
         if (event.alert) {
             navigator.notification.alert(event.alert);
         }
@@ -340,11 +342,11 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         }
     }
 
-    $scope.goResult = function(alert) {
+    /*$scope.goResult = function(alert) {
         currentAlert = alert;
         saveInHistoric = false;
-        $state.go('tabs.pageTraficLive');
-    }
+        $state.go('tabs.pageTraficLive', {}, {reload: true});
+    }*/
 
     $scope.getSyncClass = function(alert) {
         if (alert.sync) {
@@ -907,10 +909,9 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 
 .run(function($ionicPlatform, $location, $rootScope, localStorageService) {
     $ionicPlatform.ready(function() {
-
+        console.log("run()");
         lastAlertList = localStorageService.get('lastAlertList');
         alertList = localStorageService.get('alertList');
-
         $ionicPlatform.onHardwareBackButton(function() {
             if ($location.$$path == '/tab/home') {
                 ionic.Platform.exitApp();

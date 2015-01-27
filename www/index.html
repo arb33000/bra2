@@ -129,8 +129,6 @@
             </ion-nav-buttons>
             <ion-content class="positive-bg" has-tabs="true">
 
-                <p ng-show="lastAlertList===null && alertList===null"class="padding">Bienvenue sur Alerte Rocade Bordeaux.<br/>Utilisez le bouton <i class="icon ion-ios7-bolt-outline fs16"></i>&nbsp;trafic en direct dans le menu ci-dessus. Créez des alarmes avec le bouton <i class="icon ion-ios7-plus-outline fs16"></i></p>
-
                 <div style="margin-bottom:0px" class="list">
                     <div ng-hide="lastAlertList===null" class="item item-assertive txtcenter dark">Dernières recherches</div>
                 </div>
@@ -165,6 +163,7 @@
                         </ion-option-button>
                     </ion-item>
                 </ion-list>
+                <p ng-show="showAide" class="padding">Bienvenue sur Alerte Rocade Bordeaux.<br/>Utilisez le bouton <i class='icon ion-ios7-bolt-outline fs16'></i>&nbsp;trafic en direct dans le menu ci-dessus. Créez des alarmes avec le bouton <i class='icon ion-ios7-plus-outline fs16'></i></p>
             </ion-content>
         </ion-view>
     </script>
