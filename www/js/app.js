@@ -239,6 +239,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             case 'message':
                 {
                     dataFromNotif = e.payload.datainfo;
+                    saveInHistoric = false;
                     $state.go('tabs.pageTraficLive', {}, {
                         reload: true
                     });
@@ -265,6 +266,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 
     onNotificationAPN = function(event) {
         dataFromNotif = JSON.parse(event.data);
+        saveInHistoric = false;
         $state.go('tabs.pageTraficLive', {}, {
             reload: true
         });
