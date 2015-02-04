@@ -558,14 +558,17 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             $scope.alert = currentAlert;
         }
         $scope.pluginHour = function() {
+            var inputDate = new Date();
+            inputDate.setHours(15);
+            inputDate.setMinutes(45);
             options = {
-                date: new Date(),
+                date: inputDate,
                 mode: 'time',
                 x: 100,
                 y: 246,
                 doneButtonLabel: 'Valider',
                 cancelButtonLabel: 'Annuler',
-                clearButton: true
+                clearButton: false
             };
             datePicker.show(options, function(date) {
                 if (!isNaN(date.getHours())) {
@@ -645,8 +648,10 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     var titleUpdate = "Modification alerte";
     $scope.step = 1;
     $scope.button = "button button-calm icon-left";
-    //currentAlert.rocade.enter = 0;
-    //currentAlert.rocade.exit = 0;
+    if (arb.action !== "setEnterAlert" && arb.action !== "setExitAlert"){
+        currentAlert.rocade.enter = 0;
+        currentAlert.rocade.exit = 0;
+    }
 
     if (byNum) {
         $scope.actif1 = "";
@@ -667,17 +672,17 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     $scope.title = titleDirect;
     $scope.isEnter = true;
 
-    if (arb.action == "setEnterAlert") {
+    if (arb.action === "setEnterAlert") {
         $scope.nextStep = 'tabs.pageNewAlert';
         $scope.title = titleUpdate;
         $scope.step = 2;
-    } else if (arb.action == "setExitAlert") {
+    } else if (arb.action === "setExitAlert") {
         $scope.isEnter = false;
         $scope.txtparam = txtSortie;
         $scope.nextStep = 'tabs.pageNewAlert';
         $scope.title = titleUpdate;
         $scope.step = 2;
-    } else if (arb.action == "createAlert") {
+    } else if (arb.action === "createAlert") {
         $scope.title = titleCreate;
     }
     $scope.exitNameList = exitNameList;
