@@ -125,7 +125,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     $scope.data = {};
     $scope.data.showDelete = false;
 
-    $scope.showAide=lastAlertList===null && alertList===null;   
+    $scope.showAide = lastAlertList === null && alertList === null;
 
     var pushNotification = window.plugins.pushNotification;
 
@@ -239,7 +239,9 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             case 'message':
                 {
                     dataFromNotif = e.payload.datainfo;
-                    $state.go('tabs.pageTraficLive', {}, {reload: true});
+                    $state.go('tabs.pageTraficLive', {}, {
+                        reload: true
+                    });
                     if (e.foreground) {
                         var soundfile = e.soundname || e.payload.sound;
                         var my_media = new Media("/android_asset/www/" + soundfile);
@@ -263,7 +265,9 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 
     onNotificationAPN = function(event) {
         dataFromNotif = JSON.parse(event.data);
-        $state.go('tabs.pageTraficLive', {}, {reload: true});
+        $state.go('tabs.pageTraficLive', {}, {
+            reload: true
+        });
         if (event.alert) {
             navigator.notification.alert(event.alert);
         }
@@ -342,6 +346,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         }
     }
 
+    /*Appellé lors du clic sur une des dernières recherches*/
     $scope.goResult = function(alert) {
         currentAlert = alert;
         saveInHistoric = false;
@@ -878,7 +883,8 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             }
             $scope.data = data;
         }
-        if (dataFromNotif == "") {
+        if (dataFromNotif === "") {
+            alert('dataFromNotif empty');
             $scope.show();
             $scope.currentAlert = currentAlert;
             //Sauvegarde des 4 dernières alertes
@@ -943,12 +949,13 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         }
         $location.path('/tab/home');
         $rootScope.$apply();
-    });
+    }); 
 })
 
+/* Ne sert pas?
 function replaceAll(find, replace, str) {
     return str.replace(new RegExp(find, 'g'), replace);
-}
+}*/
 
 var arb = {};
 

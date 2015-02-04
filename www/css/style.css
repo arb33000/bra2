@@ -15,7 +15,7 @@ body {
 }
 
 .bar-header {
-    border-bottom-width: 0;
+    border-bottom-width: 0px;
 }
 
 .exitButton {
