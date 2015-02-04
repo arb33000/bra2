@@ -303,12 +303,12 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
                                 localStorageService.set('dateLocalStorage', dateUserInfo);
                             });
                         } else {
-                            alert("Erreur, merci de réessayer plus tard.");
+                            alert("Erreur, merci de réessayer plus tard");
                             console.log('ERROR ' + data);
                         }
                     }).
                     error(function(data) {
-                        alert("Erreur, merci de réessayer plus tard.");
+                        alert("Erreur, merci de réessayer plus tard!");
                         console.log('ERROR ' + data);
                     });
                 },
@@ -904,6 +904,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             saveInHistoric = true;
             $scope.doRefresh();
         } else {
+            alert('dataFromNotif NOT empty');
             var tmp = dataFromNotif.info.infoSensModel[0];
             currentAlert.rocade.enter = tmp.troncons[0].sortie;
             currentAlert.rocade.exit = tmp.troncons[tmp.troncons.length - 1].sortie;
