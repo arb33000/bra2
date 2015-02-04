@@ -46,7 +46,7 @@ angular.module('ionicApp.services', [])
             }
             var setUserInfo = function(platform, uuid, pushToken) {
 				var url = "http://"+arb.serverUrl+"/setuserinfo?data={\"uuid\":" + platform + uuid + ",\"platform\":\"" + platform + "\",\"token_push\":\"" + pushToken + "\",\"date\":\"" + dateUserInfo + "\"}&callback=JSON_CALLBACK";			
-
+                alert('setUserInfo' + url);
                 return $http({
                     method: 'JSONP',
                     url: url

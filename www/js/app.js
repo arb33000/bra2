@@ -26,7 +26,8 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             cache: false,
             views: {
                 'map-tab': {
-                    templateUrl: "map.html"
+                    templateUrl: "map.html",
+                    controller: "MapCtrl"
                 }
             }
         })
@@ -103,6 +104,9 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     }
 })
 
+.controller('MapCtrl', function($scope) {
+    trackPage("Map");
+})
 
 .controller('HomeCtrl', function($scope, $ionicModal, GAEService, localStorageService, $state) {
     /*var part = document.URL.split("#");
@@ -641,8 +645,8 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
     var titleUpdate = "Modification alerte";
     $scope.step = 1;
     $scope.button = "button button-calm icon-left";
-    currentAlert.rocade.enter = 0;
-    currentAlert.rocade.exit = 0;
+    //currentAlert.rocade.enter = 0;
+    //currentAlert.rocade.exit = 0;
 
     if (byNum) {
         $scope.actif1 = "";
@@ -738,6 +742,8 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 .controller('pageTraficLiveCtrl', ['$scope', 'localStorageService', '$ionicLoading', 'GAEService', '$http', '$q', '$timeout',
     function($scope, localStorageService, $ionicLoading, GAEService, $http, $q, $timeout) {
 
+        var alreadyExist = false;
+
         $scope.show = function() {
             $ionicLoading.show({
                 template: 'Loading...'
@@ -784,16 +790,16 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         }
 
         $scope.displayResult = function(data) {
-            totalTime = exitTime["0"];
-            totalKm = exitKm["0"];
-            enter = parseInt(currentAlert.rocade.enter);
-            exit = parseInt(currentAlert.rocade.exit);
-            temps = 0;
-            km = 0;
-            paris = "Paris";
-            toulouse = "Toulouse";
-            merignac = "Mérignac";
-            inter0 = false;
+            var totalTime = exitTime["0"];
+            var totalKm = exitKm["0"];
+            var enter = parseInt(currentAlert.rocade.enter);
+            var exit = parseInt(currentAlert.rocade.exit);
+            var temps = 0;
+            var km = 0;
+            var paris = "Paris";
+            var toulouse = "Toulouse";
+            var merignac = "Mérignac";
+            var inter0 = false;
             if (data.info.infoSensModel[0].name == "inter") {
                 inter0 = true;
                 if (enter < exit) {
@@ -885,8 +891,8 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             }
             $scope.data = data;
         }
+
         if (dataFromNotif === "") {
-            alert('dataFromNotif empty');
             $scope.show();
             $scope.currentAlert = currentAlert;
             //Sauvegarde des 4 dernières alertes
@@ -895,16 +901,29 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
                 if (lastAlertList === null) {
                     lastAlertList = [];
                 }
-                if (lastAlertList.length > 3) {
-                    lastAlertList.shift();
+
+                //Vérif que la dernière recherche n'est pas déja présente
+                for (var key in lastAlertList) {
+                    if (lastAlertList[key].rocade.enter === currentAlert.rocade.enter && lastAlertList[key].rocade.exit === currentAlert.rocade.exit) {
+                        alreadyExist = true;
+                        break;
+                    }
                 }
-                lastAlertList.push(currentAlert);
-                localStorageService.set('lastAlertList', lastAlertList);
+                if (!alreadyExist) {
+                    alreadyExist = false;
+                    if (lastAlertList.length > 3) {
+                        lastAlertList.shift();
+                    }
+                    lastAlertList.push(currentAlert);
+                    localStorageService.set('lastAlertList', lastAlertList);
+                }
             }
             saveInHistoric = true;
             $scope.doRefresh();
         } else {
-            alert('dataFromNotif NOT empty');
+            /*
+            Lors de la notif, on passe par ici en premier mais dans la foulée on passe dans le if au dessus... Double appel //?
+            */
             var tmp = dataFromNotif.info.infoSensModel[0];
             currentAlert.rocade.enter = tmp.troncons[0].sortie;
             currentAlert.rocade.exit = tmp.troncons[tmp.troncons.length - 1].sortie;
@@ -952,7 +971,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
         }
         $location.path('/tab/home');
         $rootScope.$apply();
-    }); 
+    });
 })
 
 /* Ne sert pas?
