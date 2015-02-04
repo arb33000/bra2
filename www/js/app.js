@@ -574,7 +574,7 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             };
             datePicker.show(options, function(date) {
                 if (!isNaN(date.getHours())) {
-                    $scope.alert.hour = date.getHours() + "h" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+                    $scope.alert.hour = (date.getHours() < 10 ? '0' : '') + date.getHours() + "h" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
                     $scope.$apply();
                 }
             });
