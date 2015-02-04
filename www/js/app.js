@@ -557,11 +557,12 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
             }
             $scope.alert = currentAlert;
         }
+
         $scope.pluginHour = function() {
             var inputDate = new Date();
             //2 param : heures et minutes
-            inputDate.setHours(currentAlert.hour.slice(0,currentAlert.hour.indexOf('h')));
-            inputDate.setMinutes(currentAlert.hour.slice(-2));
+            inputDate.setHours($scope.alert.hour.slice(0,$scope.alert.hour.indexOf('h')));
+            inputDate.setMinutes($scope.alert.hour.slice(-2));
             options = {
                 date: inputDate,
                 mode: 'time',
