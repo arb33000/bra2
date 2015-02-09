@@ -28,6 +28,24 @@
     <script src="js/crypto/rollups/pbkdf2.js"></script>
     <script src="js/crypto/components/enc-base64.js"></script>
 
+   <script type="text/javascript">
+   window.device = window.device || {};
+        window.HandleDeviceReady = function (callback) {
+            if (!window.device.uuid) {
+                setTimeout(function () {
+                    window.HandleDeviceReady(callback);
+                }, 100);
+                return;
+            }
+            if (!window.isDeviceReady) {
+                document.addEventListener('deviceready', callback, false);
+            }
+            else {
+                callback();
+            }
+        };
+    </script>
+
 </head>
 
 <body>

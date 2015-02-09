@@ -89,6 +89,12 @@ angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
 })
 
 .controller('TabsCtrl', function($scope, $state, $location) {
+
+window.HandleDeviceReady(settingsLoad);
+
+function settingsLoad() {
+}
+
     $scope.setAction = function(actionToSet) {
         //reset des entrées/sorties pour l'alerte courante
         arb.action = actionToSet;
