@@ -25,6 +25,7 @@
     <preference name="android-installLocation" value="auto" />
     <gap:plugin name="cordova-plugin-device" source="npm" version="1.0.1" />
     <gap:plugin name="cordova-plugin-splashscreen" source="npm" version="2.1.0" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.0.0" />
     <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
     <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
     <gap:plugin name="com.adobe.plugins.gaplugin" version="2.4.0" />
@@ -84,4 +85,7 @@
     <gap:splash src="res/splash/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
 
     <access origin="*" />
+    <!-- Only for whiteList -->
+    <allow-intent href="*" />
+    <allow-navigation href="*" />
 </widget>
