@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<widget id="org.dossou.arb" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.dossou.arb" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>AlerteRocade</name>
     <description>
         Alerte Rocade Bordeaux vous permet de connaitre en temps réel le trafic sur la rocade de bordeaux mais permet aussi la création d'alertes personnalisées.
@@ -9,7 +9,7 @@
     </author>
     <content src="index.html"/>
     <preference name="permissions" value="none" />
-    <preference name="phonegap-version" value="3.7.0" />
+    <preference name='phonegap-version' value='cli-5.1.1' />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
@@ -23,8 +23,8 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="cordova-plugin-device" source="npm" version="1.0.1" />
+    <gap:plugin name="cordova-plugin-splashscreen" source="npm" version="2.1.0" />
     <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
     <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
     <gap:plugin name="com.adobe.plugins.gaplugin" version="2.4.0" />
