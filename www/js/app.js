@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'LocalStorageModule', 'ionicApp.services'])
+angular.module('ionicApp', ['ionic', 'ngIOS9UIWebViewPatch', 'LocalStorageModule', 'ionicApp.services'])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.views.maxCache(0);
@@ -614,9 +614,9 @@ function settingsLoad() {
             }
             //On force la désynchro
             myalert.sync = false;
-            if (platform == "PC") {
+            /*if (platform == "PC") {
                 myalert.sync = true;
-            }
+            }*/
 
             alertList[myalert.id] = myalert;
             localStorageService.set('alertList', alertList);

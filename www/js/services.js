@@ -11,11 +11,15 @@ angular.module('ionicApp.services', [])
             var saveAlert = function(alert) {
 				var data = new Array();
                 data = "{\"alerts\":[" + JSON.stringify(alert) + "]}";
-				
+				console.log(data);
                 var aesUtil = new AesUtil(arb.keySize, arb.iterationCount);
+                console.log("aesUtil" +  aesUtil + arb.salt + arb.iv + dateUserInfo);
                 var encryptdata = aesUtil.encrypt(arb.salt, arb.iv, dateUserInfo, data);
+                console.log("encryptdata");
                 var alldata = "{\"uuid\":\"" + alert.uuid + "\",\"encrypteddata\":\"" + encryptdata + "\"}";
+                console.log("alldata");
                 var alldataencodeuri = encodeURIComponent(alldata);
+                console.log("alldataencodeuri");
 
 				var url = "http://"+arb.serverUrl+"/setalert?data=" + alldataencodeuri + "&callback=JSON_CALLBACK";
 				
