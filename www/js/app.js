@@ -333,6 +333,7 @@ function settingsLoad() {
     }
 
     $scope.setAlert = function(myalert) {
+        console.log('setAlert : '+myalert);
         currentAlert = myalert;
         //Si l'alarme est sync alors on va vers sa modification
         if (myalert.sync) {
