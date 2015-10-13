@@ -995,7 +995,8 @@ function replaceAll(find, replace, str) {
 
 var arb = {};
 
-arb.serverUrl = "alerterocadebordeaux.appspot.com";
+//arb.serverUrl = "alerterocadebordeaux.appspot.com";
+arb.serverUrl = "alertrocade.appspot.com";
 arb.iv = "F27D5C9927726BCEFE7510B1BDD3D137";
 arb.salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
 arb.keySize = 128;
