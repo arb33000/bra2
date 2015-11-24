@@ -90,10 +90,9 @@ angular.module('ionicApp', ['ionic', 'ngIOS9UIWebViewPatch', 'LocalStorageModule
 
 .controller('TabsCtrl', function($scope, $state, $location) {
 
-window.HandleDeviceReady(settingsLoad);
+    window.HandleDeviceReady(settingsLoad);
 
-function settingsLoad() {
-}
+    function settingsLoad() {}
 
     $scope.setAction = function(actionToSet) {
         //reset des entrées/sorties pour l'alerte courante
@@ -333,7 +332,7 @@ function settingsLoad() {
     }
 
     $scope.setAlert = function(myalert) {
-        console.log('setAlert : '+myalert);
+        console.log('setAlert : ' + myalert);
         currentAlert = myalert;
         //Si l'alarme est sync alors on va vers sa modification
         if (myalert.sync) {
@@ -568,7 +567,7 @@ function settingsLoad() {
         $scope.pluginHour = function() {
             var inputDate = new Date();
             //2 param : heures et minutes
-            inputDate.setHours($scope.alert.hour.slice(0,$scope.alert.hour.indexOf('h')));
+            inputDate.setHours($scope.alert.hour.slice(0, $scope.alert.hour.indexOf('h')));
             inputDate.setMinutes($scope.alert.hour.slice(-2));
             options = {
                 date: inputDate,
@@ -657,7 +656,7 @@ function settingsLoad() {
     var titleUpdate = "Modification alerte";
     $scope.step = 1;
     $scope.button = "button button-calm icon-left";
-    if (arb.action !== "setEnterAlert" && arb.action !== "setExitAlert"){
+    if (arb.action !== "setEnterAlert" && arb.action !== "setExitAlert") {
         currentAlert.rocade.enter = 0;
         currentAlert.rocade.exit = 0;
     }
