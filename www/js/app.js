@@ -109,8 +109,13 @@ angular.module('ionicApp', ['ionic', 'ngIOS9UIWebViewPatch', 'LocalStorageModule
     }
 })
 
-.controller('MapCtrl', function($scope) {
+.controller('MapCtrl', function($scope, $state) {
     trackPage("Map");
+    $scope.test='http://diffusion-numerique.info-routiere.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux';
+    $scope.refrehPage = function() {
+        $state.go($state.current, {}, {reload: true});
+        //window.location.reload(true);
+    }
 })
 
 .controller('HomeCtrl', function($scope, $ionicModal, GAEService, localStorageService, $state) {
@@ -136,33 +141,36 @@ angular.module('ionicApp', ['ionic', 'ngIOS9UIWebViewPatch', 'LocalStorageModule
 
     $scope.showAide = lastAlertList === null && alertList === null;
 
-    var pushNotification = window.plugins.pushNotification;
+    var pushNotification = null;
 
-    if (ionicPlatform.isWindowsPhone()) {
-        pushNotification.register(
-            channelHandler,
-            errorHandler, {
-                "channelName": "alerterocadebordeaux",
-                "ecb": "onNotificationWP8",
-                "uccb": "channelHandler",
-                "errcb": "jsonErrorHandler"
-            });
-    } else if (ionicPlatform.isAndroid()) {
-        pushNotification.register(
-            successHandler,
-            errorHandler, {
-                "senderID": "185801549405",
-                "ecb": "onNotification"
-            });
-    } else if (ionicPlatform.isIOS()) {
-        pushNotification.register(
-            tokenHandler,
-            errorHandler, {
-                "badge": "true",
-                "sound": "true",
-                "alert": "true",
-                "ecb": "onNotificationAPN"
-            });
+    if (window.device.uuid !== "PC") {
+        pushNotification = window.plugins.pushNotification;
+        if (ionicPlatform.isWindowsPhone()) {
+            pushNotification.register(
+                channelHandler,
+                errorHandler, {
+                    "channelName": "alerterocadebordeaux",
+                    "ecb": "onNotificationWP8",
+                    "uccb": "channelHandler",
+                    "errcb": "jsonErrorHandler"
+                });
+        } else if (ionicPlatform.isAndroid()) {
+            pushNotification.register(
+                successHandler,
+                errorHandler, {
+                    "senderID": "185801549405",
+                    "ecb": "onNotification"
+                });
+        } else if (ionicPlatform.isIOS()) {
+            pushNotification.register(
+                tokenHandler,
+                errorHandler, {
+                    "badge": "true",
+                    "sound": "true",
+                    "alert": "true",
+                    "ecb": "onNotificationAPN"
+                });
+        }
     }
 
     function channelHandler(event) {
@@ -643,6 +651,7 @@ angular.module('ionicApp', ['ionic', 'ngIOS9UIWebViewPatch', 'LocalStorageModule
 
 .controller('PageExitCtrl', function($scope, $ionicTabsDelegate, $state, $ionicScrollDelegate) {
     $scope.exitList = exitList;
+    $scope.anim='test';
     console.log("PageExitCtrl");
     var inactif = "button-outline";
     var iconActif1 = "ion-ios7-keypad";
@@ -714,6 +723,7 @@ angular.module('ionicApp', ['ionic', 'ngIOS9UIWebViewPatch', 'LocalStorageModule
     }
 
     $scope.selectButton = function(item) {
+        $scope.anim='anim1 animated infinite';
         if ($scope.isEnter) {
             currentAlert.rocade.enter = item;
         } else {
@@ -950,7 +960,6 @@ angular.module('ionicApp', ['ionic', 'ngIOS9UIWebViewPatch', 'LocalStorageModule
 
 .run(function($ionicPlatform, $location, $rootScope, localStorageService) {
     $ionicPlatform.ready(function() {
-        console.log("run()");
         lastAlertList = localStorageService.get('lastAlertList');
         alertList = localStorageService.get('alertList');
         $ionicPlatform.onHardwareBackButton(function() {
@@ -959,28 +968,30 @@ angular.module('ionicApp', ['ionic', 'ngIOS9UIWebViewPatch', 'LocalStorageModule
             }
         })
 
-        ionicPlatform = ionic.Platform;
-        if (ionicPlatform.isIOS()) {
-            setTimeout(function() {
-                navigator.splashscreen.hide();
-            }, 100);
-            if (window.StatusBar) {
-                window.StatusBar.overlaysWebView(true);
-                window.StatusBar.styleLightContent();
+        if (window.device.uuid !== "PC") {
+            ionicPlatform = ionic.Platform;
+            if (ionicPlatform.isIOS()) {
+                setTimeout(function() {
+                    navigator.splashscreen.hide();
+                }, 100);
+                if (window.StatusBar) {
+                    window.StatusBar.overlaysWebView(true);
+                    window.StatusBar.styleLightContent();
+                }
             }
-        }
 
-        if (ionicPlatform.isWindowsPhone()) {
-            platform = "wp";
-        } else if (ionicPlatform.isAndroid()) {
-            platform = "android";
-        } else if (ionicPlatform.isIOS()) {
-            platform = "ios";
-        }
+            if (ionicPlatform.isWindowsPhone()) {
+                platform = "wp";
+            } else if (ionicPlatform.isAndroid()) {
+                platform = "android";
+            } else if (ionicPlatform.isIOS()) {
+                platform = "ios";
+            }
 
-        if (platform != "PC" && platform != "wp") {
-            gaPlugin = window.plugins.gaPlugin;
-            gaPlugin.init(successHandler, errorHandler, "UA-55568400-1", 10);
+            if (platform != "PC" && platform != "wp") {
+                gaPlugin = window.plugins.gaPlugin;
+                gaPlugin.init(successHandler, errorHandler, "UA-55568400-1", 10);
+            }
         }
         $location.path('/tab/home');
         $rootScope.$apply();

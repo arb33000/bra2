@@ -168,3 +168,29 @@ body {
 .V {
     background-color: #259b24;
 }
+
+.pulseAnim-add {
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+}
+.pulseAnim-remove {
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+}
+
+.anim1-add,
+.anim1-remove {}
+
+.anim1,
+.anim1-add.anim1-add-active {
+    color: #C6107E;
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+}
+
+.anim1-remove.anim1-remove-active {}
+
+.spinner svg {
+  stroke: #FFF;
+  fill: #FFF;
+}

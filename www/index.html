@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Alerte Rocade Bordeaux</title>
 
     <link href="css/app.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
         
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
     <!-- ionic/angularjs js -->
-    <script type="text/javascript" src="lib/ionic/js/ionic.bundle.js"></script>
+    <script type="text/javascript" src="lib/ionic/js/ionic.bundle.min.js"></script>
     <script type="text/javascript" src="lib/angular-local-storage.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/app.js"></script>
@@ -31,6 +31,7 @@
 
    <script type="text/javascript">
    window.device = window.device || {};
+   window.device.uuid = window.device.uuid || "PC";
         window.HandleDeviceReady = function (callback) {
             if (!window.device.uuid) {
                 setTimeout(function () {
@@ -247,7 +248,7 @@
     <script id="pageListExit.html" type="text/ng-template">
         <ion-view view-title={{title}}>
             <ion-content class="padding positive-bg" has-tabs="true">
-                <p class="dark fs16">Sélectionnez votre <span class="strong">{{txtparam}}</span> de rocade par numéro ou par ville desservie.</p>
+                <p class="dark fs16">Sélectionnez votre <span ng-class="anim" class="strong">{{txtparam}}</span> de rocade par numéro ou par ville desservie.</p>
                 <div class="button-bar">
                     <a ng-class="[button, actif1, icon1]" ng-click="setMode(1)">Par numéro</a>
                     <a ng-class="[button, actif2, icon2]" ng-click="setMode(2)">Par ville</a>
@@ -287,12 +288,13 @@
                         <img class="imgrocade" src="img/sp1_bordeaux_arb.gif">
                     </div>
                     <div class="calqueb">
-                        <img class="imgrocade" src="http://diffusion-numerique.info-routiere.gouv.fr/asteccli/servlet/clientleger?format=png&source0=cigt_alienor&source1=cir&raster=bordeaux">
+                        <img class="imgrocade" ng-src="{{test}}">
                     </div>
                     <div class="calqueb">
                         <img class="imgrocade" src="img/cn2_bordeaux_map_v01b.gif">
                     </div>
                 </div>
+                <div style="width:100%;text-align:center; padding-top:20px"><i style="font-size:90px" class="ion-refresh assertive" ng-click="refrehPage()"></i></div>
             </ion-content>
         </ion-view>
     </script>
@@ -300,7 +302,7 @@
     <script id="pageTraficLive.html" type="text/ng-template">
         <ion-view view-title="Fluidité du trafic">
             <ion-content class="padding txtcenter center calm-bg light" has-tabs="true">
-                <ion-refresher refreshing-icon="ion-ios-reloading light" pulling-icon="ion-ios-arrow-thin-down light" on-refresh="doRefresh()"></ion-refresher>
+                <ion-refresher spinner="ios" pulling-icon="ion-ios-arrow-thin-down light" on-refresh="doRefresh()"></ion-refresher>
                 <p class="light fs24">{{currentAlert.rocade.enter}}<i class="icon padding icon ion-arrow-right-c"></i>{{currentAlert.rocade.exit}}</p>
                 <div class="row">
                     <div class="col" ng-repeat="route in data.info.infoSensModel">
