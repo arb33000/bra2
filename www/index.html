@@ -210,7 +210,7 @@
                         </div>
                         <button class="button button-assertive" ng-click="pluginHour()">{{alert.hour}}</button>
                     </label>
-                    <ion-checkbox class="item item-balanced checkbox-assertive balanced-bg light" ng-repeat="item in alert.days" ng-model="item.checked" ng-checked="item.checked">{{ item.text }}</ion-checkbox>
+                    <ion-checkbox class="item item-balanced checkbox-assertive balanced-bg light" ng-repeat="item in alert.days track by $index" ng-model="item.checked" ng-checked="item.checked">{{ item.text }}</ion-checkbox>
                     <a class="item item-calm item-icon-left" ng-click="toogleAdvancedView()">
                         <i class="icon ion-ios-gear-outline"></i>Paramètres avancés...
                     </a>
